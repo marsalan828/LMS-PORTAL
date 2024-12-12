@@ -1,6 +1,6 @@
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const {sign} = require("jsonwebtoken");
 require("dotenv").config();
 
 const LoginController = async (req, res) => {
@@ -16,9 +16,15 @@ const LoginController = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(400).json({message:"Invalid Credentials"});
         }
+        delete user.dataValues.password;
         
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: "1h" });
+        const token = sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: "1h" });
 
+        res.cookie("auth", token, {
+          httpOnly: true,
+          maxAge: 3600 * 1000,
+        });
+        
         return res.status(200).json({
             message: "Login Successful",
             token,

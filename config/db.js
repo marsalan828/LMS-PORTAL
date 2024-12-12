@@ -12,6 +12,7 @@ const sequelize = new Sequelize({
     logging:false,
 });
 
+
 // test connection
 async function testConn() {
     try {

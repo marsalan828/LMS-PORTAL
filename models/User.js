@@ -43,12 +43,12 @@ const User = sequelize.define("User", {
   },
 });
 
-// create table if not exist
+// // create table if not exist
 
-User.sync({
-  alter: true,
-}).then(() => {
-  console.log("user table created/updated");
-});
+// User.sync({
+//   alter: true,
+// }).then(() => {
+//   console.log("user table created/updated");
+// });
 
 module.exports = User;
