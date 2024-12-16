@@ -26,7 +26,7 @@ module.exports = {
             courseCount = await Course.count();
             console.log(courseCount);
             
-            return res.status(201).json({message:`found ${courseCount} course(s)`,courses:courses})
+            return res.status(201).json({message:`found ${courseCount} course(s).`,courses:courses})
         } catch (error) {
             console.error(error)
             return res.status(500).json({message:"error finding the courses",error:error});

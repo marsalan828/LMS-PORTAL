@@ -5,7 +5,7 @@ var router = express.Router();
 const checkAuth = require("../middleware/checkAuth");
 const CourseController = require("../controller/CourseController");
 
-router.use(checkAuth);
+// router.use(checkAuth);
 
 router.post('/create-course', CourseController.createCourse);
 router.get("/get-courses", CourseController.getAllCourses);
